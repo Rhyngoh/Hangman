@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Pirate Hangman</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+	<!-- Theme -->
+	<link rel="stylesheet" href="startbootstrap-creative-gh-pages/css/creative.css">
+
+	<!-- Fonts -->
+	<link href="https://fonts.googleapis.com/css?family=Merriweather|Open+Sans" rel="stylesheet">
+
+    <!-- Style -->
+	<link rel="stylesheet" href="assets/css/style.css">
+
+	<!-- Viewport -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+	<div id="background">
+	    <img src="assets/images/Battlepirateship.png" class="stretch" alt="background image" />
+	</div>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-1">
+			</div>
+			<div class="col-md-10">
+				<h1> Pirate Hangman </h1>
+				<h2> Press the start button to begin Hangman </h2>
+				<hr>
+			</div>
+			<div class="col-md-1">
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-1">
+			</div>
+			<div class="col-md-5">
+				<img id="hangmanstart" src="assets/images/hangman 0.bmp" alt="Hangman Start">
+			</div>
+			<div class="col-md-5">
+				<h2 id="numberAttempts">Number of guesses remaining: </h2>
+				<h3 id="pirateStart">Shiver me timbers! A landlubber dares to challenge Davy Jones in a game of Pirate Hangman!</h3>
+				<button class="btn-lg" onclick="startGame()">Start Game</button>
+				<button id="resetbtn" class="btn-lg" onclick="resetGame()">Reset Game</button>
+			</div>
+			<div class="col-md-1">
+			</div>
+		</div>
+	</div>
+</body>
+<script src="assets/javascript/game.js"></script>
+</html>

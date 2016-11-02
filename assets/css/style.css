@@ -1,0 +1,19 @@
+*{
+    font-family: "Merriweather", "Open Sans", serif, sans-serif;
+    color: #eee;
+}
+#background {
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	z-index: -1;
+}
+.stretch {
+	width: 100%;
+	height: 100%;
+}
+.btn-lg {
+	color: black;
+}
