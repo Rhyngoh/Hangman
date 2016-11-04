@@ -107,7 +107,6 @@ function continueGame(){
 	randomNumber = Math.floor(Math.random() * wordBank.length);
 	randomWord = wordBank[randomNumber];
 	blankSpaces();
-	updateHangman();
 	counter = 6;
 	numberAttempts();
 	updateHangman();
@@ -119,6 +118,13 @@ function continueGame(){
 function gameOver() {
 	if (counter === 0){
 		alert("Game Over! Your dinghy has sunk! Welcome to Davy Jone's Locker!");
+		counter = 6;
+		numberAttempts();
+		updateHangman();
+		guessedLetters = "";
+		document.querySelector("#lettersGuessed").innerHTML = ("Letters already guessed: " + guessedLetters + " ");
+		winLetters = 0;
+		document.querySelector(".pirateStart").innerHTML = "Yer soul be trapped in Davy Jone's Locker! Press Start Game to play again.";
 	}
 }
 //On key press
