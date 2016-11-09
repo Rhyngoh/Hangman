@@ -30,7 +30,7 @@ function updateScore() {
 //Create a loop to make as many underlined spaces as the word length
 function blankSpaces() {
 	blankSpacesUnder = "";
-	for (i=0;i<randomWord.length;i++){
+	for (var i=0;i<randomWord.length;i++){
 		blankSpacesUnder += "<h3 class='moreBlankSpaces'>_ </h3>"
 		document.querySelector(".pirateStart").innerHTML = blankSpacesUnder;
 	console.log(randomWord);
@@ -40,7 +40,7 @@ function blankSpaces() {
 //if repeat, do function
 //Function to change the underline to a letter
 function changeWord(){
-	for (i=0;i<randomWord.length;i++){
+	for (var i=0;i<randomWord.length;i++){
 		if (userGuess === randomWord[i]) {
 			var correctGuess = document.getElementsByClassName('moreBlankSpaces');
 			correctGuess[i].innerHTML = userGuess;
