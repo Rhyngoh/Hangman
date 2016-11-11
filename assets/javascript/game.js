@@ -1,52 +1,44 @@
+//An array of possible words
 var wordBank = ["roger", "scurvy", "eyepatch", "pirate", "captain", "buccaneer", "scallywag", "rum", "hemp", "rope", "sail", "bow", "monkey", "cannon", "freebooter", "landlubber", "blackjack", "davyjones", "ahoy", "matey", "booty", "treasure", "cutlass", "jollyroger", "oldsalt", "scuttle", "seadog", "plank", "dubloon", "pillage"];
+//Create a random number
 var randomNumber = Math.floor(Math.random() * wordBank.length);
+//Using the random number, choose a random word from the array of possible words
 var randomWord = wordBank[randomNumber];
+//Stores your key input
 var userGuess;
-//multiple letters
-var multiCorrectArr = [];
-var multiCorrect = 0;
-var indexMultiCorrect = wordBank.indexOf(userGuess);
-var multiCorrectStr = "";
+//Blank space variable
 var blankSpacesUnder = "";
-var duplicateLetters = "";
-//var blankSpacesArrChanged ;
+//Stores the guessed letters into a string
 var guessedLetters = "";
+//How many guesses are correct
 var winLetters = 0;
 //counter for number of wrong guesses
-//counter = 6 for each limb
 var counter = 6;
 //hangman image
 var hangmanImage = "<img src=" + "'assets/images/hangman" + counter + ".bmp'" + ">";
-
-// --------- //
-
 //Score and number of wins (# of times the user guessed the word correctly)
 var score = 0;
+// =========== //
+//Updates the score after every win
 function updateScore() {
 		document.querySelector("#scoreboard").innerHTML = "Score: " + score;
 }
-//Start Button Press to begin game
-//Choose a random word from from a wordbank
-//Create a loop to make as many underlined spaces as the word length
+//Create a loop to make as many underlined (blank) spaces as the word length
 function blankSpaces() {
 	blankSpacesUnder = "";
 	for (var i=0;i<randomWord.length;i++){
 		blankSpacesUnder += "<h3 class='moreBlankSpaces'>_ </h3>"
 		document.querySelector(".pirateStart").innerHTML = blankSpacesUnder;
-	console.log(randomWord);
-	console.log(blankSpacesUnder);
 	}
 }
-//if repeat, do function
 //Function to change the underline to a letter
+//Compare keypress to each letter of the random word
 function changeWord(){
 	for (var i=0;i<randomWord.length;i++){
 		if (userGuess === randomWord[i]) {
 			var correctGuess = document.getElementsByClassName('moreBlankSpaces');
 			correctGuess[i].innerHTML = userGuess;
-			console.log("You've put an input" + correctGuess);
 			winLetters++;
-			console.log("win letters" + winLetters);
 		}
 		
 	}
@@ -56,10 +48,7 @@ function changeWord(){
 function numberAttempts(){
 	document.querySelector("#numberAttempts").innerHTML = "Number of incorrect guesses remaining: " + counter;
 }
-//on keypress, do a function
-//if correct, replace blank spaces with the keypress
-//if incorrect, add letter to Letters already guessed section
-//Decrement number of attempts by 1
+//Change the hangman image after every incorrect guess
 function updateHangman(){
 	hangmanImage = "<img alt='Hangman Image' src=" + "'assets/images/hangman" + counter + ".bmp'" + ">";
 	document.querySelector("#hangmanstart").innerHTML = hangmanImage;
@@ -76,7 +65,6 @@ function resetGame() {
 		document.querySelector(".pirateStart").innerHTML = "Arrr another landlubber challenges Davy Jones!";
 	}	
 	counter = 6;
-	console.log(counter);
 	score = 0;
 	updateScore();
 	numberAttempts();	
@@ -87,11 +75,11 @@ function resetGame() {
 }
 //Win condition
 //winLetters to calculate when word is solved
+//confirm if you want to play again
 function winCondition(){
 	if(winLetters === (randomWord.length)){
 		alert("You barely escape death and sail off to safety");
 		score++;
-		//alert("Your score is: " + score);
 		updateScore();
 		var faceAgain = confirm("Do you want to challenge Davy Jones in another game of Pirate Hangman?");
 		if (faceAgain == true){
@@ -103,6 +91,7 @@ function winCondition(){
 		}
 	}
 }
+//continue the game and keep score
 function continueGame(){
 	randomNumber = Math.floor(Math.random() * wordBank.length);
 	randomWord = wordBank[randomNumber];
@@ -128,49 +117,36 @@ function gameOver() {
 	}
 }
 //On key press
+//if correct, replace blank spaces with the keypress
+//if incorrect, add letter to Letters already guessed section
+//Decrement number of attempts by 1
 document.onkeyup = function(event){
-	//console.log(userGuess);
-	//console.log(randomWord);
 	userGuess = String.fromCharCode(event.keyCode).toLowerCase();
-	console.log("You typed " + userGuess);
 	if (counter > 0) {
 		if (randomWord.indexOf(userGuess) !== -1 && guessedLetters.indexOf(userGuess) === -1){
-		 	//alert("THE WORD CONTAINS THIS LETTER");
 		 	guessedLetters += userGuess;
 		 	document.querySelector("#lettersGuessed").innerHTML = ("Letters already guessed: " + guessedLetters + " ");
-		 	console.log("guessed letters: " + guessedLetters);
 		 	changeWord();
 		 	winCondition();
 		} else if (guessedLetters.indexOf(userGuess) !== -1) {
 	 		alert("You've already guessed that letter you fool");
 		} else {
-		 	//alert("THE WORD DOES NOT CONTAIN THIS LETTER");
 		 	guessedLetters += userGuess;
 		 	document.querySelector("#lettersGuessed").innerHTML = ("Letters already guessed: " + guessedLetters + " ");
 		 	counter--;
-		 	console.log(counter);
 		 	numberAttempts();
 		 	updateHangman();
-		 	console.log(counter);
 		 	gameOver();
-		 	console.log(guessedLetters);
 	 	}
 	}
-	 
 };
-
-//Automatically start the game
-//startGame();
 updateScore(); //start game with 0 score
 numberAttempts(); //start game with 6 counter
-
 //Start button
 document.getElementById("startbtn").onclick = function(){
 	blankSpaces();
-	console.log("Start Button Clicked");
 };
 //Reset Button
 document.getElementById("resetbtn").onclick = function(){
 	resetGame();
-	console.log("Reset Button Clicked");
 };
