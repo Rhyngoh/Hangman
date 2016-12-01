@@ -19,6 +19,7 @@ var hangmanImage = "<img src=" + "'assets/images/hangman" + counter + ".bmp'" + 
 //Score and number of wins (# of times the user guessed the word correctly)
 var score = 0;
 // =========== //
+
 //Updates the score after every win
 function updateScore() {
 		document.querySelector("#scoreboard").innerHTML = "Score: " + score;
@@ -120,31 +121,33 @@ function gameOver() {
 //if correct, replace blank spaces with the keypress
 //if incorrect, add letter to Letters already guessed section
 //Decrement number of attempts by 1
-document.onkeyup = function(event){
-	userGuess = String.fromCharCode(event.keyCode).toLowerCase();
-	if (counter > 0) {
-		if (randomWord.indexOf(userGuess) !== -1 && guessedLetters.indexOf(userGuess) === -1){
-		 	guessedLetters += userGuess;
-		 	document.querySelector("#lettersGuessed").innerHTML = ("Letters already guessed: " + guessedLetters + " ");
-		 	changeWord();
-		 	winCondition();
-		} else if (guessedLetters.indexOf(userGuess) !== -1) {
-	 		alert("You've already guessed that letter you fool");
-		} else {
-		 	guessedLetters += userGuess;
-		 	document.querySelector("#lettersGuessed").innerHTML = ("Letters already guessed: " + guessedLetters + " ");
-		 	counter--;
-		 	numberAttempts();
-		 	updateHangman();
-		 	gameOver();
-	 	}
-	}
-};
+	document.onkeyup = function(event){
+		userGuess = String.fromCharCode(event.keyCode).toLowerCase();
+		if (counter > 0) {
+			if (randomWord.indexOf(userGuess) !== -1 && guessedLetters.indexOf(userGuess) === -1){
+			 	guessedLetters += userGuess;
+			 	document.querySelector("#lettersGuessed").innerHTML = ("Letters already guessed: " + guessedLetters + " ");
+			 	changeWord();
+			 	winCondition();
+			} else if (guessedLetters.indexOf(userGuess) !== -1) {
+		 		alert("You've already guessed that letter you fool");
+			} else {
+			 	guessedLetters += userGuess;
+			 	document.querySelector("#lettersGuessed").innerHTML = ("Letters already guessed: " + guessedLetters + " ");
+			 	counter--;
+			 	numberAttempts();
+			 	updateHangman();
+			 	gameOver();
+		 	}
+		}
+	};	
+
 updateScore(); //start game with 0 score
 numberAttempts(); //start game with 6 counter
 //Start button
 document.getElementById("startbtn").onclick = function(){
 	blankSpaces();
+	
 };
 //Reset Button
 document.getElementById("resetbtn").onclick = function(){
